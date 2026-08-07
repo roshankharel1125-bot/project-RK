@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMart | Modern E-Commerce Hub</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <!-- Custom Tokens & Styles -->
+  <link rel="stylesheet" href="variables.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar (Flexbox layout) -->
+  <header class="sticky-top custom-navbar">
+    <nav class="navbar navbar-expand-lg container py-2">
+      <a class="navbar-brand navbar-brand-flex" href="#home">
+        <i class="bi bi-bag-heart-fill text-primary"></i> ApexMart
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-menu navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item">
+            <a class="nav-link nav-route active" data-route="home" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-route" data-route="products" href="#products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-route" data-route="contact" href="#contact">Contact</a>
+          </li>
+        </ul>
+
+        <div class="nav-actions-flex">
+          <a href="#cart" class="btn btn-outline-primary position-relative nav-route" data-route="cart">
+            <i class="bi bi-cart3"></i> Cart
+            <span id="cart-count-badge" class="cart-badge ms-1">0</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Routing Container -->
+  <main class="container my-4">
+
+    <!-- ===================================================================
+         PAGE 1: HOME PAGE (#home)
+         =================================================================== -->
+    <section id="home-page" class="page active">
+      <!-- Hero Section -->
+      <div class="p-5 mb-4 bg-body-tertiary rounded-3 shadow-sm text-center text-md-start">
+        <div class="container-fluid py-3">
+          <span class="badge bg-primary mb-2">Summer Sale Live</span>
+          <h1 class="display-5 fw-bold">Next-Gen Shopping Experience</h1>
+          <p class="col-md-8 fs-5 text-muted">Discover premium clothing, accessories, and modern electronics delivered directly to your doorstep with zero shipping fees.</p>
+          <div class="hero-cta-flex justify-content-center justify-content-md-start">
+            <a href="#products" class="btn btn-primary btn-lg px-4 nav-route" data-route="products">Explore Shop</a>
+            <a href="#contact" class="btn btn-outline-secondary btn-lg px-4 nav-route" data-route="contact">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Categories (Grid Layout) -->
+      <h3 class="mb-3">Featured Categories</h3>
+      <div class="featured-grid mb-5">
+        <div class="card text-center p-3 shadow-sm border-0 bg-white">
+          <i class="bi bi-gender-male fs-1 text-primary mb-2"></i>
+          <h5 class="card-title">Men's Fashion</h5>
+          <a href="#products" class="stretched-link nav-route filter-trigger" data-category="men's clothing">Shop Now &rarr;</a>
+        </div>
+        <div class="card text-center p-3 shadow-sm border-0 bg-white">
+          <i class="bi bi-gender-female fs-1 text-primary mb-2"></i>
+          <h5 class="card-title">Women's Fashion</h5>
+          <a href="#products" class="stretched-link nav-route filter-trigger" data-category="women's clothing">Shop Now &rarr;</a>
+        </div>
+        <div class="card text-center p-3 shadow-sm border-0 bg-white">
+          <i class="bi bi-gem fs-1 text-primary mb-2"></i>
+          <h5 class="card-title">Jewelery</h5>
+          <a href="#products" class="stretched-link nav-route filter-trigger" data-category="jewelery">Shop Now &rarr;</a>
+        </div>
+        <div class="card text-center p-3 shadow-sm border-0 bg-white">
+          <i class="bi bi-laptop fs-1 text-primary mb-2"></i>
+          <h5 class="card-title">Electronics</h5>
+          <a href="#products" class="stretched-link nav-route filter-trigger" data-category="electronics">Shop Now &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 2: PRODUCTS CATALOG (#products)
+         =================================================================== -->
+    <section id="products-page" class="page">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Product Catalog</h2>
+        <span id="product-count" class="text-muted">Showing all items</span>
+      </div>
+
+      <!-- Filter Bar (Flexbox) -->
+      <div class="filter-bar-flex">
+        <div class="category-buttons-flex" id="category-filter-container">
+          <!-- Dynamically populated categories -->
+          <button class="btn btn-primary btn-sm active-cat" data-category="all">All</button>
+        </div>
+        
+        <div class="search-box" style="min-width: 250px;">
+          <input type="text" id="search-input" class="form-control" placeholder="Search products...">
+        </div>
+      </div>
+
+      <!-- Visible Error & Loader State Container -->
+      <div id="api-status-container"></div>
+
+      <!-- Product Catalog Cards (CSS Grid) -->
+      <div id="product-grid-container" class="product-grid">
+        <!-- Dynamically rendered with JavaScript .map() -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 3: PRODUCT DETAIL VIEW (#product-detail)
+         =================================================================== -->
+    <section id="product-detail-page" class="page">
+      <a href="#products" class="btn btn-outline-secondary mb-4 nav-route" data-route="products">&larr; Back to Products</a>
+      <div id="product-detail-container" class="card shadow-sm p-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 4: SHOPPING CART (#cart)
+         =================================================================== -->
+    <section id="cart-page" class="page">
+      <h2 class="mb-4">Your Cart</h2>
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div id="cart-items-container">
+            <!-- Dynamic Cart Items via .map() -->
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card p-3 shadow-sm">
+            <h5 class="card-title mb-3">Order Summary</h5>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Subtotal</span>
+              <span id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Tax (8%)</span>
+              <span id="cart-tax">$0.00</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between mb-3 fw-bold fs-5">
+              <span>Total</span>
+              <span id="cart-total">$0.00</span>
+            </div>
+            <a href="#checkout" id="checkout-btn" class="btn btn-primary w-100 disabled nav-route" data-route="checkout">Proceed to Checkout</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 5: CHECKOUT PAGE (#checkout)
+         =================================================================== -->
+    <section id="checkout-page" class="page">
+      <h2 class="mb-4">Checkout</h2>
+      <div class="checkout-grid">
+        <!-- Form with Client-Side Validation -->
+        <div class="card p-4 shadow-sm">
+          <h4 class="mb-3">Shipping & Payment Details</h4>
+          <form id="checkout-form" class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" required>
+                <div class="invalid-feedback">Valid first name is required.</div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" required>
+                <div class="invalid-feedback">Valid last name is required.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Shipping Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                <div class="invalid-feedback">Please enter your shipping address.</div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Choose...</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                </select>
+                <div class="invalid-feedback">Please select a valid country.</div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip Code</label>
+                <input type="text" class="form-control" id="zip" required pattern="^[0-9]{5}(-[0-9]{4})?$">
+                <div class="invalid-feedback">Zip code required (e.g. 12345).</div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <h4 class="mb-3">Payment Information</h4>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" required>
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">Name on card is required</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="cc-number" class="form-label">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="1111222233334444" required pattern="^[0-9]{16}$">
+                <div class="invalid-feedback">Credit card number must be 16 digits</div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+            <button class="w-100 btn btn-success btn-lg" type="submit">Place Order</button>
+          </form>
+        </div>
+
+        <!-- Checkout Summary -->
+        <div>
+          <div class="card p-3 shadow-sm sticky-top" style="top: 80px;">
+            <h5 class="card-title">Order Total</h5>
+            <div id="checkout-summary-list" class="my-3">
+              <!-- Rendered items -->
+            </div>
+            <div class="d-flex justify-content-between fw-bold fs-5">
+              <span>Total:</span>
+              <span id="checkout-final-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 6: CONTACT PAGE (#contact)
+         =================================================================== -->
+    <section id="contact-page" class="page">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card p-4 shadow-sm">
+            <h2 class="mb-3">Contact Customer Support</h2>
+            <p class="text-muted mb-4">Have questions regarding an order? Send us a message and our team will respond within 24 hours.</p>
+            
+            <form id="contact-form" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="contact-name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="contact-name" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+              <div class="mb-3">
+                <label for="contact-email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="contact-email" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+              <div class="mb-3">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea class="form-control" id="contact-message" rows="4" required></textarea>
+                <div class="invalid-feedback">Message cannot be empty.</div>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toast-message">Item updated</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 border-top">
+    <div class="container text-center text-md-start">
+      <div class="row">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <h5>ApexMart</h5>
+          <p class="small">Your one-stop shop for all your needs. 
+            
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="small mb-0">&copy; 2026 ApexMart Inc. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Application Core Script -->
+  <script src="script.js"></script>
+</body>
+</html>

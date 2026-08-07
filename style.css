@@ -1,0 +1,239 @@
+/* ==========================================================================
+   STYLE.CSS - Custom Layout & Component Styles
+   ========================================================================== */
+@import url('./variables.css');
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+/* SPA Router: Page Visibility Control */
+.page {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   FLEXBOX DEMONSTRATIONS (Deliberate Flexbox Usage)
+   ========================================================================== */
+
+/* Navbar Navigation */
+.custom-navbar {
+  background-color: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand-flex {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 800;
+  color: var(--primary-color);
+  font-size: 1.35rem;
+}
+
+.nav-actions-flex {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Category Filter & Search Bar */
+.filter-bar-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  background-color: var(--bg-surface);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-lg);
+}
+
+.category-buttons-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+/* Cart Items Row Layout */
+.cart-item-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Hero Section Actions */
+.hero-cta-flex {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+/* ==========================================================================
+   CSS GRID DEMONSTRATIONS (Deliberate CSS Grid Usage)
+   ========================================================================== */
+
+/* Main Product Catalog Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Featured Categories Grid on Homepage */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 992px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Checkout Page Two-Column Grid */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--spacing-xl);
+}
+
+@media (max-width: 992px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   COMPONENT STYLES
+   ========================================================================== */
+
+.product-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.product-img-wrapper {
+  height: 200px;
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.product-img-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.product-card-body {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* Visible Error & Fallback UI */
+.error-fallback-card {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.cart-badge {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.2em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+footer {
+  margin-top: auto;
+  background-color: var(--secondary-color);
+  color: #94a3b8;
+}
